@@ -1,0 +1,81 @@
+# ## ref https://cert-manager.io/next-docs/reference/api-docs/#cert-manager.io%2fv1alpha3
+# --- 
+
+# apiVersion: cert-manager.io/v1
+# kind: ClusterIssuer
+# metadata:
+#   name: sunnycloud-acme-clusterissuer
+# spec:
+#   acme:
+#     server: "https://acme-v02.api.letsencrypt.org/directory"
+#     email: yjs890403@gmail.com
+#     privateKeySecretRef:
+#       name: letsencrypt-prod
+#     solvers:
+#       - dns01:
+#           route53:
+#             region: ap-northeast-2
+#             # region: us-east-1
+#             accessKeyID: AKIA5D7L5Q3IZZSL43BV
+#             secretAccessKeySecretRef:
+#               name: route53-secret
+#               key: secret-access-key
+#             # hostedZoneID: Z04262982TJ693N8CRF20    
+
+# ---
+
+# # apiVersion: cert-manager.io/v1
+# # kind: Issuer
+# # metadata:
+# #   name: selfsigned-issuer
+# #   namespace: api-gateway-system
+# # spec:
+# #   selfSigned: {}
+
+# # ---
+
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: api-gateway-acme
+#   namespace: api-gateway-system
+# spec:
+#   secretName: api-gateway-acme
+#   duration: 2880h # 120d
+#   renewBefore: 360h # 15d
+#   commonName: sunnycloud.link
+#   dnsNames:
+#     - sunnycloud.link
+#     # - "*.sunnycloud.link"
+#     - blog.sunnycloud.link
+#   #   - traefik.traefik.svc
+#   # ipAddresses:
+#   #   - 192.168.9.144
+#   isCA: false
+#   # keySize: 2048
+#   # keyAlgorithm: rsa
+#   # keyEncoding: pkcs1
+#   usages:
+#     - digital signature
+#     - key encipherment
+#     - server auth
+#     - client auth 
+#   issuerRef:
+#     kind: ClusterIssuer
+#     # group: cert-manager.io
+#     name: sunnycloud-acme-clusterissuer
+#     # kind: Issuer
+#     # name: ck-selfsigned-clusterissuer
+
+# ---
+# # https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-tlsoption
+# # Traefik currently only uses the TLS Store named "default". This means that if you have two stores that are named default in different kubernetes namespaces, they may be randomly chosen. For the time being, please only configure one TLSSTore named default.
+# ## TLSSTore : Allows to configure the default TLS store
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: TLSStore
+# metadata:
+#   name: default
+#   namespace: api-gateway-system
+# spec:
+#   defaultCertificate:
+#     secretName: api-gateway-acme
