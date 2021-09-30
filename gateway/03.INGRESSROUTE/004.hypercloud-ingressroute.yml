@@ -9,7 +9,7 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/api/hypercloud`, `/api/multi-hypercloud`,`/api/webhook`) && Host(`*`)
+    match: PathPrefix(`/api/hypercloud`, `/api/multi-hypercloud`,`/api/webhook`) && Host(`test`)
     priority: 100    
     middlewares:
     - name: hypercloud-stripprefix

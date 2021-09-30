@@ -11,8 +11,9 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
+  ingressClassName: "tmax"
   rules:
-    - host: console.hypercloud.com
+    - host: monitoring.hypercloud.com
       http:
         paths:
           - backend:
@@ -25,5 +26,5 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - console.hypercloud.com
+        - monitoring.hypercloud.com
       secretName: api-gateway-server-tls

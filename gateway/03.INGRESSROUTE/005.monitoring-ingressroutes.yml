@@ -9,7 +9,7 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/api/prometheus-tenancy/api`) && Host(`*`)
+    match: PathPrefix(`/api/prometheus-tenancy/api`) && Host(`test`)
     priority: 100                      
     middlewares:
     - name: monitoring-stripprefix-tenancy
@@ -23,7 +23,7 @@ spec:
       port: web
       scheme: http
   - kind: Rule
-    match: PathPrefix(`/api/prometheus/api`) && Host(`*`)
+    match: PathPrefix(`/api/prometheus/api`) && Host(`test`)
     priority: 100                      
     middlewares:
     - name: monitoring-stripprefix
@@ -37,7 +37,7 @@ spec:
       port: web
       scheme: http      
   - kind: Rule
-    match: PathPrefix(`/api/alertmanager/api`) && Host(`*`) 
+    match: PathPrefix(`/api/alertmanager/api`) && Host(`test`) 
     priority: 100                       
     middlewares:
     - name: monitoring-stripprefix

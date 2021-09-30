@@ -10,20 +10,22 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/api/kubernetes`) && Host(`*`)
+    match: PathPrefix(`/api/kubernetes`) && Host(`console.hypercloud.com`)
+    # match: PathPrefix(`/api/kubernetes`) 
     priority: 100    
     middlewares:
     - name: kubernetes-stripprefix
       namepsace: api-gateway-system    
-    services:
+    services: 
     - kind: Service
       name: kubernetes
       namespace: default
       port: https
       scheme: https
       serversTransport: insecure-transport 
-  tls: {} # use default tls 
-
+  # tls: {} # use default tls 
+  tls:
+    secretName: api-gateway-server-tls
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
