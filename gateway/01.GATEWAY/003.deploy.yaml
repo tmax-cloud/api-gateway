@@ -128,10 +128,10 @@ spec:
           - --keycloak-auth-url=https://hyperauth.org/auth 
           - --keycloak-client-id=ck-integration-hypercloud5
           - --mc-mode=false
-          - --release-mode=false
+          - --release-mode=true
           # - --tls-cert-file=/var/https-cert/cert
           # - --tls-key-file=/var/https-cert/key
-        image: tmaxcloudck/hypercloud-console:dev.server.0.2
+        image: tmaxcloudck/hypercloud-console:dev.server.0.1
         imagePullPolicy: IfNotPresent
         # volumeMounts:
         #   - mountPath: /var/https-cert

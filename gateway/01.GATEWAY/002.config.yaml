@@ -19,13 +19,14 @@ data:
           loadBalancer:
             # serversTransport: tls
             servers:
-            - url: "http://127.0.0.1:31303"
+            # - url: "http://0.0.0.0:31303"
+            - url: "http://0.0.0.0:31303"
       # serversTransports:
-        # tls:
-          # insecureSkipVerify: true
+      #   tls:
+      #     insecureSkipVerify: true
       middlewares:
         dashboard-auth:
           basicAuth:
             users:
               # - "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
-              - "admin:$apr1$WboCaB7Z$PJbsvKlI3XMq12xMeQMmG."          
+              - "admin:$apr1$WboCaB7Z$PJbsvKlI3XMq12xMeQMmG."

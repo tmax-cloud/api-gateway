@@ -9,7 +9,7 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/`, `/static/`, `/api/resource/`) && Host(`console.hypercloud.com`)
+    match: PathPrefix(`/`, `/static/`, `/api/resource/`) && Host(`console.tmaxcloud.org`)
     # match: PathPrefix(`/`, `/static/`, `/api/resource/`) 
     services:
     - name: console-service@file

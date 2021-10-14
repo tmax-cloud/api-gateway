@@ -10,10 +10,12 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/api/kubernetes`) && Host(`console.hypercloud.com`)
+    match: PathPrefix(`/api/kubernetes`) && Host(`console.tmaxcloud.org`)
     # match: PathPrefix(`/api/kubernetes`) 
     priority: 100    
     middlewares:
+    - name: jwt-decode-auth
+      namespace: api-gateway-system       
     - name: kubernetes-stripprefix
       namepsace: api-gateway-system    
     services: 

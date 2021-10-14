@@ -7,7 +7,7 @@ spec:
   entryPoints:
   - traefik
   routes:
-  - match: PathPrefix(`/api`, `/dashboard`, `/`)
+  - match: PathPrefix(`/api`, `/dashboard`, `/`) && Host(`dashboard.tmaxcloud.org`)
     kind: Rule
     services:
     - name: api@internal

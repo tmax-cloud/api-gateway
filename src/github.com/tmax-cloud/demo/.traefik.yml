@@ -1,9 +1,0 @@
-displayName: UID Demo 
-type: middleware 
-
-import: github.com/tmax-cloud/demo
-
-summary: '[Demo] Inject unique id header'
-
-testData:
-  Foo: Bar 

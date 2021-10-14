@@ -9,7 +9,7 @@ spec:
   - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/api/grafana`) && Host(`*`)
+    match: PathPrefix(`/api/grafana`) && Host(`console.tmaxcloud.org`)
     priority: 100                      
     services:
     - kind: Service
