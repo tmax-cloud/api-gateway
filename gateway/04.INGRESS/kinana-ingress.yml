@@ -8,9 +8,12 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/service.serversscheme: https
     traefik.ingress.kubernetes.io/service.serverstransport: insecure-transport
+    # add an annotation indicating the issuer to use.
+    cert-manager.io/cluster-issuer: nameOfClusterIssuer
   name: kibana
   namespace: kube-logging
 spec:
+#  ingressClassName: "tmax"
   rules:
     - host: console.hypercloud.com
       http:

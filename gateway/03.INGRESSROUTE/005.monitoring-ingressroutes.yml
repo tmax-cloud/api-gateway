@@ -13,9 +13,9 @@ spec:
     priority: 100                      
     middlewares:
     - name: monitoring-stripprefix-tenancy
-      namepsace: api-gateway-system    
-    # - name: jwt-decode-auth
-    #   namespace: default
+      namepsace: api-gateway-system
+    - name: jwt-decode-auth
+      namespace: api-gateway-system
     services:
     - kind: Service
       name: prometheus-k8s
@@ -27,9 +27,9 @@ spec:
     priority: 100                      
     middlewares:
     - name: monitoring-stripprefix
-      namepsace: api-gateway-system    
-    # - name: jwt-decode-auth
-    #   namespace: default
+      namepsace: api-gateway-system
+    - name: jwt-decode-auth
+      namespace: api-gateway-system
     services:
     - kind: Service
       name: prometheus-k8s
@@ -42,15 +42,17 @@ spec:
     middlewares:
     - name: monitoring-stripprefix
       namepsace: api-gateway-system
+    - name: jwt-decode-auth
+      namespace: api-gateway-system
     services:
     - kind: Service
       name: alertmanager-main 
       namespace: monitoring 
       port: web
       scheme: http
-  tls: 
-    secretName: api-gateway-server-tls
-    # tls: {}
+#  tls:
+#    secretName: api-gateway-server-tls
+  tls: {}
 
 ---
 

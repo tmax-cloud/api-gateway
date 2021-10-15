@@ -10,3 +10,4 @@ metadata:
 spec:
   defaultCertificate:
     secretName: api-gateway-server-tls
+

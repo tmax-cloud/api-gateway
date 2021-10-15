@@ -46,9 +46,9 @@ spec:
         # Value of kubernetes.io/ingress.class annotation that identifies Ingress objects to be processed.
         - --providers.kubernetesingress.ingressclass=tmax
         # Traefik processes all Ingress objects in the configured namespaces.
-        # - --providers.kubernetesingress.namespaces=console-system,api-gateway-system,hyperregistry
+#        - --providers.kubernetesingress.namespaces=console-system,api-gateway-system,hyperregistry,moniotring
         - --providers.kubernetesingress.ingressendpoint.publishedservice=api-gateway-system/api-gateway
-        - --providers.kubernetesingress.allowemptyservices=true 
+        - --providers.kubernetesingress.allowemptyservices=true
         - --providers.kubernetescrd
         - --providers.kubernetescrd.allowcrossnamespace=true
         - --providers.kubernetesgateway=true 
@@ -57,7 +57,7 @@ spec:
         - --providers.file
         - --providers.file.directory=/data/config
         - --providers.file.watch=true
-        - --log.level=ERROR 
+        - --log.level=ERROR
         - --log.format=json  
         - --accesslog=true
         - --accesslog.format=json
@@ -148,7 +148,6 @@ spec:
       schedulerName: default-scheduler
       # securityContext:
       #   fsGroup: 65532
-      serviceAccount: api-gateway
       serviceAccountName: api-gateway
       terminationGracePeriodSeconds: 60
       volumes:

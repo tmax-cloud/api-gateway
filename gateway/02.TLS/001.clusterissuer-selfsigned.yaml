@@ -1,7 +1,7 @@
 ## ref https://cert-manager.io/next-docs/reference/api-docs/#cert-manager.io%2fv1alpha3
 --- 
 
-apiVersion: cert-manager.io/v1alpha3
+apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: hypercloud-selfsigned-clusterissuer
@@ -53,14 +53,19 @@ spec:
 
 ---
 
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: api-gateway-ca-issuer
   namespace: api-gateway-system
 spec:
-  ca:
-    secretName: api-gateway-ca-tls
+  issuerRef:
+    name:
+  secretName: :
+
+#spec:
+#  ca:
+#    secretName: api-gateway-ca-tls
 
 --- 
 
