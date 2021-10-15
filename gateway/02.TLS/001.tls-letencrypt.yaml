@@ -30,9 +30,9 @@ spec:
           route53:
             region: ap-northeast-2
             # region: us-east-1
-            accessKeyID: AKIA5D7L5Q3I7OW7APRS
+            accessKeyID: AKIA5D7L5Q3IXJWC5OFK
             secretAccessKeySecretRef:
-              name: route53-secret
+              name: route53-secret-2
               key: secret-access-key
             hostedZoneID: Z0168768GHU66XKGU2VL    
 

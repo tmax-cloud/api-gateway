@@ -1,0 +1,83 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-tmaxcloud
+spec:
+  selfSigned: {}
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ca-tmaxcloud
+  namespace: cert-manager
+spec:
+  secretName: tmaxcloud-ca
+  duration: 2880h # 120d
+  renewBefore: 360h # 15d
+  commonName: tmaxcloud
+  isCA: true
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    - client auth
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    name: selfsigned-tmaxcloud
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: tmaxcloud-issuer
+spec:
+  ca:
+    secretName: ca-tmaxcloud
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tmaxcloud-monitoring
+  namespace: monitoring
+spec:
+  secretName: tmaxcloud-monitoring-tls
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    # - client auth
+  dnsNames:
+    - "*.tmaxcloud.org"
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    name: tmaxcloud-issuer
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tmaxcloud-console
+  namespace: console-system
+spec:
+  secretName: tmaxcloud-console-tls
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    - client auth
+  dnsNames:
+    - "console.tmaxcloud.org"
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    name: tmaxcloud-issuer

@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test
+  namespace: test
+spec:
+  # 원하는 시크릿 이름 
+  secretName: webserver-secret 
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    - client auth
+  dnsNames:
+    # 원하는 dns 이름 설정 
+    - "webserver.tmaxcloud.org"
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    # issuer 네임은 tmaxcloud-issuer로 고정 
+    name: tmaxcloud-issuer

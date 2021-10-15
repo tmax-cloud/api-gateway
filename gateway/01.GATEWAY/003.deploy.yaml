@@ -32,8 +32,12 @@ spec:
         - --entryPoints.traefik.address=:9000
         - --entryPoints.web.address=:80
         - --entryPoints.websecure.address=:443
+        - --entrypoints.websecure.http.tls
         - --entryPoints.k8s.address=:6443
+        # insecureSkipVerify disables SSL certificate verification.
         - --serverstransport.insecureskipverify=true # disables SSL certificate verification. (verify ssl certificate beween traefik - backend)
+        ## user rootCAs :rootCAs is the list of certificates (as file paths, or data bytes) that will be set as Root Certificate Authorities when using a self-signed TLS certificate.
+#        - --serversTransport.rootCAs=tmaxca.crt
         # Uncomment the below lines to redirect http requests to https.
         - --entryPoints.web.http.redirections.entrypoint.to=websecure
         - --entryPoints.web.http.redirections.entrypoint.scheme=https

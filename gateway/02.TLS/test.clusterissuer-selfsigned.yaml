@@ -1,0 +1,106 @@
+## ref https://cert-manager.io/next-docs/reference/api-docs/#cert-manager.io%2fv1alpha3
+--- 
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: test-selfsigned
+spec:
+  selfSigned: {}
+
+---
+
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: selfsigned-issuer
+#   namespace: api-gateway-system
+# spec:
+#   selfSigned: {}
+
+# ---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ca-cert
+  namespace: cert-manager
+spec:
+  secretName: tmaxcloud
+  duration: 2880h # 120d
+  renewBefore: 360h # 15d
+  commonName: tmaxcloud
+  # dnsNames:
+  #   - api-gateway.api-gateway-system.svc
+  #   - traefik.traefik.svc
+  # ipAddresses:
+  #   - 192.168.9.144
+  isCA: true
+  # keySize: 2048
+  # keyAlgorithm: rsa
+  # keyEncoding: pkcs1
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    - client auth 
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    name: test-selfsigned
+    # kind: Issuer
+    # name: ck-selfsigned-clusterissuer
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: test-server-tls
+  namespace: default
+spec:
+  ca:
+    secretName: tmaxcloud
+
+--- 
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-server-tls
+  namespace: default
+spec:
+  secretName: test-server-tls
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment    
+    - server auth
+    # - client auth
+  dnsNames:
+  - "*.hypercloud.com"
+  - "api-gateway.api-gateway-system.svc"
+  issuerRef:
+    name: api-gateway-ca-issuer
+
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api-gateway-client-tls
+  namespace: api-gateway-system
+spec:
+  secretName: api-gateway-client-tls
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment    
+    # - server auth
+    - client auth
+  dnsNames:
+  - "*.hypercloud.com"
+  - "api-gateway.api-gateway-system.svc"
+  issuerRef:
+    name: api-gateway-ca-issuer
+
