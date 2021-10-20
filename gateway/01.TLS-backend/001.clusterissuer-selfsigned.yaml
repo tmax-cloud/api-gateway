@@ -16,8 +16,8 @@ metadata:
   namespace: cert-manager
 spec:
   secretName: tmaxcloud-ca
-  duration: 2880h # 120d
-  renewBefore: 360h # 15d
+  duration: 8760h # 360d=1y
+  renewBefore: 720h # 30d
   commonName: tmaxcloud
   isCA: true
   usages:

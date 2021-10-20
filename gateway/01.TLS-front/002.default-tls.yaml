@@ -9,5 +9,5 @@ metadata:
   namespace: api-gateway-system
 spec:
   defaultCertificate:
-    secretName: api-gateway-acme-tmaxcloud
+    secretName: tmaxcloud-gateway-tls
 

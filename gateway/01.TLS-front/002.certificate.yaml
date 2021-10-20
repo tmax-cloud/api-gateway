@@ -5,7 +5,7 @@ metadata:
   name: tmaxcloud-gateway
   namespace: api-gateway-system
 spec:
-  secretName: tmaxcloud-gateway-selfsigned
+  secretName: tmaxcloud-gateway-tls
   isCA: false
   usages:
     - digital signature
@@ -13,8 +13,9 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - "front.tmaxcloud.org"
+    - "*.tmaxcloud.org"
+    - "tmaxcloud.org"
   issuerRef:
     kind: ClusterIssuer
     group: cert-manager.io
-    name: tmaxcloud-issuer
+    name: tmaxcloud-acme-clusterissuer

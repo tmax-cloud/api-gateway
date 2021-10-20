@@ -15,11 +15,7 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: traefik
       app.kubernetes.io/name: api-gateway
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
+      app.kubernetes.io/managed-by: tmax-cloud
   template:
     metadata:
       labels:
@@ -32,12 +28,15 @@ spec:
         - --entryPoints.traefik.address=:9000
         - --entryPoints.web.address=:80
         - --entryPoints.websecure.address=:443
+#        - --entryPoints.console.address="console.tmaxcloud.org:433"
+#        - --entrypoints.console.http.tls
+        # http.tls 설정을 하면 websecure를 entrypoint로 사용하면 모든 서비스에 대해 자동으로 기본 tls 적용을 함 (따로 설정을 안해줘도 됌)
         - --entrypoints.websecure.http.tls
         - --entryPoints.k8s.address=:6443
-        # insecureSkipVerify disables SSL certificate verification.
-        - --serverstransport.insecureskipverify=true # disables SSL certificate verification. (verify ssl certificate beween traefik - backend)
+#         insecureSkipVerify disables SSL certificate verification.
+#        - --serverstransport.insecureskipverify=true # disables SSL certificate verification. (verify ssl certificate beween traefik - backend)
         ## user rootCAs :rootCAs is the list of certificates (as file paths, or data bytes) that will be set as Root Certificate Authorities when using a self-signed TLS certificate.
-#        - --serversTransport.rootCAs=tmaxca.crt
+        - --serverstransport.rootcas=/etc/ssl/tmax/ca.cert
         # Uncomment the below lines to redirect http requests to https.
         - --entryPoints.web.http.redirections.entrypoint.to=websecure
         - --entryPoints.web.http.redirections.entrypoint.scheme=https
@@ -48,16 +47,15 @@ spec:
         - --providers.kubernetesingress=true
         # - --providers.kubernetesingress.labelselector="app=traefik"
         # Value of kubernetes.io/ingress.class annotation that identifies Ingress objects to be processed.
-        - --providers.kubernetesingress.ingressclass=tmax
+        - --providers.kubernetesingress.ingressclass=tmax-cloud
         # Traefik processes all Ingress objects in the configured namespaces.
 #        - --providers.kubernetesingress.namespaces=console-system,api-gateway-system,hyperregistry,moniotring
         - --providers.kubernetesingress.ingressendpoint.publishedservice=api-gateway-system/api-gateway
         - --providers.kubernetesingress.allowemptyservices=true
+        - --providers.kubernetesingress.allowexternalnameservices=true
         - --providers.kubernetescrd
         - --providers.kubernetescrd.allowcrossnamespace=true
-        - --providers.kubernetesgateway=true 
-        # BUG: ingressclass doesn't work 
-        # - --providers.kubernetescrd.ingressclass=api-gateway
+        - --providers.kubernetesgateway=true
         - --providers.file
         - --providers.file.directory=/data/config
         - --providers.file.watch=true
@@ -65,8 +63,10 @@ spec:
         - --log.format=json  
         - --accesslog=true
         - --accesslog.format=json
-        - --accesslog.filepath="/tmp/accesslog.json"
-        # - --accesslog.fields.defaultmode=keep
+        - --accesslog.filepath=/var/log/gateway/access.log
+        - --accesslog.bufferingsize=500
+        - --accesslog.fields.headers.defaultmode=keep
+        - --accesslog.filters.statuscodes=300-600
         image: traefik:v2.5.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -119,8 +119,12 @@ spec:
         - mountPath: /data/config
           name: configmap-volume
           readOnly: true
-        - mountPath: /tmp
-          name: tmp
+        - mountPath: /etc/ssl/tmax
+          name: gateway-cert
+          readOnly: true
+        - name: logs
+          mountPath: /var/log/gateway
+#          readOnly: true
       - name: console 
         command:
           - /opt/bridge/bin/console
@@ -131,22 +135,44 @@ spec:
           - --keycloak-realm=tmax
           - --keycloak-auth-url=https://hyperauth.org/auth 
           - --keycloak-client-id=ck-integration-hypercloud5
-          - --mc-mode=false
+          - --mc-mode=true
           - --release-mode=true
           # - --tls-cert-file=/var/https-cert/cert
           # - --tls-key-file=/var/https-cert/key
-        image: tmaxcloudck/hypercloud-console:dev.server.0.1
+        image: tmaxcloudck/hypercloud-console:v21.0.8.1
         imagePullPolicy: IfNotPresent
-        # volumeMounts:
-        #   - mountPath: /var/https-cert
-        #     name: https-cert
-        #     readOnly: true        
         ports:
           - containerPort: 31303
-            protocol: TCP 
+            protocol: TCP
             name: console
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      - name: jwt-decode
+        env:
+          - name: JWKS_URL
+            value: https://hyperauth.org/auth/realms/tmax/protocol/openid-connect/certs
+          - name: AUTH_HEADER_KEY
+            value: Authorization
+          - name: CACHE_ENABLED
+            value: "true"
+#          - name: CLAIM_MAPPING_FILE_PATH
+#            value: /claim-mappings/config.json
+          - name: LOG_LEVEL
+            value: debug
+          - name: LOG_TYPE
+            value: pretty
+          - name: MAX_CACHE_KEYS
+            value: "10000"
+          - name: PORT
+            value: "8080"
+          - name: TOKEN_VALIDATED_HEADER_KEY
+            value: jwt-token-validated
+        image: tmaxcloudck/jwt-decode:5.0.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: jwt-decode
+            protocol: TCP
+            containerPort: 8080
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -155,13 +181,12 @@ spec:
       serviceAccountName: api-gateway
       terminationGracePeriodSeconds: 60
       volumes:
-      - emptyDir: {}
-        name: tmp
       - name: configmap-volume
         configMap: 
           name: console-config
-        # emptyDir: {}
-      # - name: https-cert
-      #   secret:
-      #     defaultMode: 288
-      #     secretName: console-https-secret
+      - name: gateway-cert
+        secret:
+          defaultMode: 288
+          secretName: tmaxcloud-gateway-selfsigned
+      - name: logs
+        emptyDir: {}

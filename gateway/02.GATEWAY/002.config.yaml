@@ -21,12 +21,21 @@ data:
             servers:
             # - url: "http://0.0.0.0:31303"
             - url: "http://0.0.0.0:31303"
-      # serversTransports:
-      #   tls:
-      #     insecureSkipVerify: true
+      serversTransports:
+        insecure:
+          insecureSkipVerify: true
       middlewares:
         dashboard-auth:
           basicAuth:
             users:
               # - "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
               - "admin:$apr1$WboCaB7Z$PJbsvKlI3XMq12xMeQMmG."
+        jwt-decode-auth:
+          forwardAuth:
+            address: "http://localhost:8080"
+            authResponseHeaders:
+              - jwt-token-validated
+              - Authorization
+            trustForwardHeader: true
+            tls:
+              insecureSkipVerify: true

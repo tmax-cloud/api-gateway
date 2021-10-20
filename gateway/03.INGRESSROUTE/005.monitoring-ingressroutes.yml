@@ -1,12 +1,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
+  labels:
+    app.kubernetes.io/instance: traefik
+    app.kubernetes.io/managed-by: tmax-cloud
+    app.kubernetes.io/name: api-gateway
   name: monitoring-ingressroute
   namespace: api-gateway-system
 spec:
   entryPoints:
   - websecure
-  - web
+#  - web
   routes:
   - kind: Rule
     match: PathPrefix(`/api/prometheus-tenancy/api`) && Host(`console.tmaxcloud.org`)
@@ -22,6 +26,7 @@ spec:
       namespace: monitoring
       port: web
       scheme: http
+      serversTransport: insecure-transport
   - kind: Rule
     match: PathPrefix(`/api/prometheus/api`) && Host(`console.tmaxcloud.org`)
     priority: 100                      
@@ -35,7 +40,8 @@ spec:
       name: prometheus-k8s
       namespace: monitoring
       port: web
-      scheme: http      
+      scheme: http
+      serversTransport: insecure-transport
   - kind: Rule
     match: PathPrefix(`/api/alertmanager/api`) && Host(`console.tmaxcloud.org`) 
     priority: 100                       
@@ -50,7 +56,8 @@ spec:
       namespace: monitoring 
       port: web
       scheme: http
-#  tls:
+      serversTransport: insecure-transport
+  #  tls:
 #    secretName: api-gateway-server-tls
   tls: {}
 

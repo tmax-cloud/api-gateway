@@ -1,0 +1,21 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tmaxcloud-gateway
+  namespace: api-gateway-system
+spec:
+  secretName: tmaxcloud-gateway-selfsigned
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+    - client auth
+  dnsNames:
+    - "*.tmaxcloud.org"
+    - "tmaxcloud.org"
+  issuerRef:
+    kind: ClusterIssuer
+    group: cert-manager.io
+    name: tmaxcloud-issuer

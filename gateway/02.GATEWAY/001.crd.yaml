@@ -75,7 +75,7 @@ spec:
                           name:
                             description: Name is a reference to a Kubernetes Service
                               object (for a load-balancer of servers), or to a TraefikService
-                              object (service load-balancer, mirroring, etc). The
+                              object (service load-balancer, mirroring, _etc). The
                               differentiation between the two is specified in the
                               Kind field.
                             type: string
@@ -582,7 +582,7 @@ spec:
                       name:
                         description: Name is a reference to a Kubernetes Service object
                           (for a load-balancer of servers), or to a TraefikService
-                          object (service load-balancer, mirroring, etc). The differentiation
+                          object (service load-balancer, mirroring, _etc). The differentiation
                           between the two is specified in the Kind field.
                         type: string
                       namespace:
@@ -1382,7 +1382,7 @@ spec:
                         name:
                           description: Name is a reference to a Kubernetes Service
                             object (for a load-balancer of servers), or to a TraefikService
-                            object (service load-balancer, mirroring, etc). The differentiation
+                            object (service load-balancer, mirroring, _etc). The differentiation
                             between the two is specified in the Kind field.
                           type: string
                         namespace:
@@ -1438,7 +1438,7 @@ spec:
                   name:
                     description: Name is a reference to a Kubernetes Service object
                       (for a load-balancer of servers), or to a TraefikService object
-                      (service load-balancer, mirroring, etc). The differentiation
+                      (service load-balancer, mirroring, _etc). The differentiation
                       between the two is specified in the Kind field.
                     type: string
                   namespace:
@@ -1503,7 +1503,7 @@ spec:
                         name:
                           description: Name is a reference to a Kubernetes Service
                             object (for a load-balancer of servers), or to a TraefikService
-                            object (service load-balancer, mirroring, etc). The differentiation
+                            object (service load-balancer, mirroring, _etc). The differentiation
                             between the two is specified in the Kind field.
                           type: string
                         namespace:
