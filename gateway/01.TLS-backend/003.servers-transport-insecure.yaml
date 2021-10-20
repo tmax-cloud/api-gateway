@@ -6,12 +6,3 @@ metadata:
  namespace: api-gateway-system
 spec:
  insecureSkipVerify: true
-
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: ServersTransport
-metadata:
- name: insecure-transport
- namespace: hypercloud5-system
-spec:
- insecureSkipVerify: true
