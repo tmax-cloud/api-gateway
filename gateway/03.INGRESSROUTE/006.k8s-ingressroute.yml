@@ -1,15 +1,5 @@
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: ServersTransport
-metadata:
-  name: insecure-transport
-  namespace: api-gateway-system
-spec:
-  # serverName: api-gateway
-  insecureSkipVerify: true
---- 
-
-apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: k8s-ingressroute
@@ -25,8 +15,6 @@ spec:
       namespace: default
       port: https
       scheme: https
-      serversTransport: insecure-transport 
-  tls:
-    secretName: api-gateway-cert-tls      
-  # tls: {}
+      serversTransport: insecure@file
+  tls: {}
 ---
