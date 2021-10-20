@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] kubernetes ingressroute 추가, 기타파일정리">
+    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] transport 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/01.TLS-backend/003.servers-transport-insecure.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/01.TLS-backend/003.servers-transport-insecure.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/01.TLS-backend/003.servers-transport-insecure.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/02.GATEWAY/002.servers-transport-insecure.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20211020_0010" />
+    <property name="com.google.cloudcode.ide_session_index" value="20211020_0011" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/새 스크래치 파일" value="yaml" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -48,6 +48,7 @@
       <recent name="$PROJECT_DIR$/gateway/02.TLS" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gateway/02.GATEWAY" />
       <recent name="$PROJECT_DIR$/_etc" />
       <recent name="$PROJECT_DIR$/gateway/03.INGRESSROUTE" />
       <recent name="$PROJECT_DIR$/gateway/04.INGRESS" />
@@ -74,6 +75,7 @@
     <MESSAGE value="[feat] CA통합 작업(clusterissuer, certificate)" />
     <MESSAGE value="[feat] hypercloud CA 통합, jwt-decode-container 추가, 기타 https ingress 추가" />
     <MESSAGE value="[feat] kubernetes ingressroute 추가, 기타파일정리" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] kubernetes ingressroute 추가, 기타파일정리" />
+    <MESSAGE value="[feat] transport 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] transport 수정" />
   </component>
 </project>
