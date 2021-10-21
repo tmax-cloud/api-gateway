@@ -1,5 +1,7 @@
----
+# Create secret
+# kubectl create secret generic route53-secret --namespace cert-manager --from-literal=secret-access-key="yoursecretaccesskey"
 
+---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -15,13 +17,9 @@ spec:
           route53:
             region: ap-northeast-2
             # region: us-east-1
-            accessKeyID: AKIA5D7L5Q3IXJWC5OFK
+            accessKeyID: youraccesskey
             secretAccessKeySecretRef:
               name: route53-secret
               key: secret-access-key
-            hostedZoneID: Z0168768GHU66XKGU2VL
-
----
-# Create secret
-# kubectl create secret generic route53-secret --namespace cert-manager --from-literal=secret-access-key="DaLiLHqK2aLgSam8e4FYnCOuFwOIFxTQTrkLksx7"
+            hostedZoneID: yourhostedzoneid
 
