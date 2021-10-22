@@ -47,7 +47,7 @@ metadata:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/managed-bu: tmax-cloud
     app.kubernetes.io/name: api-gateway
-  name: tmaxcloud-issuer
+  name: tmaxcloud-clusterissuer
 spec:
   ca:
     secretName: tmaxcloud-ca
