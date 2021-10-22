@@ -1,23 +1,27 @@
 IMAGE_DIR=_images
 # docker.io & quay.io & etc..
 REGISTRY=docker.io
-OFFREGISTRY=192.169.1.150
-TRAEFIK_NAME=library/traefik
+PRIVATE_REGISTRY=192.169.1.150
+TRAEFIK_NAMESPACE=library
+TRAEFIK_NAME=traefik
 TRAEFIK_TAG=v2.5.3
-CONSOLE_NAME=tmaxcloudck/hypercloud-console
+CONSOLE_NAMESPACE=tmaxcloudck
+CONSOLE_NAME=hypercloud-console
 CONSOLE_TAG=5.0.34.0
-JWT_NAME=tmaxcloudck/jwt-decode
+JWT_NAMESPACE=tmaxcloudck
+JWT_NAME=jwt-decode
 JWT_TAG=5.0.0.0
+# commands
 PULL=podman pull
 SAVE=podman save
 
 prepare_online:
-	sudo $(PULL) $(REGISTRY)/$(TRAEFIK_NAME):$(TRAEFIK_TAG)
-	sudo $(SAVE) $(REGISTRY)/$(TRAEFIK_NAME):$(TRAEFIK_TAG) > $(IMAGE_DIR)/traefik_$(TRAEFIK_TAG).tar
-	sudo $(PULL) $(REGISTRY)/$(CONSOLE_NAME):$(CONSOLE_TAG)
-	sudo $(SAVE) $(REGISTRY)/$(CONSOLE_NAME):$(CONSOLE_TAG) > $(IMAGE_DIR)/console_$(CONSOLE_TAG).tar
-	sudo $(PULL) $(REGISTRY)/$(JWT_NAME):$(JWT_TAG)
-	sudo $(SAVE) $(REGISTRY)/$(JWT_NAME):$(JWT_TAG) > $(IMAGE_DIR)/jwt-decode_$(JWT_TAG).tar
+	sudo $(PULL) $(REGISTRY)/$(TRAEFIK_NAMESPACE)/$(TRAEFIK_NAME):$(TRAEFIK_TAG)
+	sudo $(SAVE) $(REGISTRY)/$(TRAEFIK_NAMESPACE)/$(TRAEFIK_NAME):$(TRAEFIK_TAG) > $(IMAGE_DIR)/$(TRAEFIK_NAME)_$(TRAEFIK_TAG).tar
+	sudo $(PULL) $(REGISTRY)/$(CONSOLE_NAMESPACE)/$(CONSOLE_NAME):$(CONSOLE_TAG)
+	sudo $(SAVE) $(REGISTRY)/$(CONSOLE_NAMESPACE)/$(CONSOLE_NAME):$(CONSOLE_TAG) > $(IMAGE_DIR)/$(CONSOLE_NAME)_$(CONSOLE_TAG).tar
+	sudo $(PULL) $(REGISTRY)/$(JWT_NAMESPACE)/$(JWT_NAME):$(JWT_TAG)
+	sudo $(SAVE) $(REGISTRY)/$(JWT_NAMESPACE)/$(JWT_NAME):$(JWT_TAG) > $(IMAGE_DIR)/$(JWT_NAME)_$(JWT_TAG).tar
 
 #prepare_offline:
 	#sudo podman save $(JWT_NAME):$(JWT_TAG) > $(JWT_NAME):$(JWT_TAG).tar
