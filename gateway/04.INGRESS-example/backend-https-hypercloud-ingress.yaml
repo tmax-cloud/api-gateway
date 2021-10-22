@@ -20,7 +20,7 @@ spec:
                   name: https
             path: /
             pathType: Prefix
-#  tls:
-#    - hosts:
-#        - monitoring.tmaxcloud.org
+  tls:
+    - hosts:
+        - hypercloud.tmaxcloud.org
 #      secretName: tmaxcloud-org

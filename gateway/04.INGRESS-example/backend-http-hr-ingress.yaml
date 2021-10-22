@@ -11,6 +11,9 @@ metadata:
   namespace: hyperregistry
 spec:
   ingressClassName: tmax-cloud  #ingressclass는 `tmax-cloud`로 지정
+  tls:
+    - hosts:
+        - hyperregistry.tmaxcloud.org
   rules:
   - host: hyperregistry.tmaxcloud.org
     http:

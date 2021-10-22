@@ -6,6 +6,7 @@ metadata:
     tmaxcloud.org/ingress: grafana
   annotations: 
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#    traefik.ingress.kubernetes.io/router.tls: "true"
 #    traefik.ingress.kubernetes.io/router.middlewares: api-gateway-system-jwt-decode-auth@kubernetescrd
 #    cert-manager.io/cluster-issuer: tmaxcloud-acme-clusterissuer
   name: grafana
@@ -24,6 +25,9 @@ spec:
                   # name: https
             path: /
             pathType: Prefix
+  tls:
+    - hosts:
+        - grafana.tmaxcloud.org
 #  tls:
 #    - hosts:
 #        - monitoring.tmaxcloud.org
