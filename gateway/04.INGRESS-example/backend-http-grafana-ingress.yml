@@ -2,6 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  labels:
+    tmaxcloud.org/ingress: grafana
   annotations: 
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 #    traefik.ingress.kubernetes.io/router.middlewares: api-gateway-system-jwt-decode-auth@kubernetescrd
