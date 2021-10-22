@@ -1,5 +1,6 @@
 IMAGE_DIR=_images
-REGISTRY=docker.io # docker.io & quay.io & etc..
+# docker.io & quay.io & etc..
+REGISTRY=docker.io
 OFFREGISTRY=192.169.1.150
 TRAEFIK_NAME=library/traefik
 TRAEFIK_TAG=v2.5.3
