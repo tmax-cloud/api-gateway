@@ -4,9 +4,30 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] transport 위치 변경">
+    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] CHANGE tmaxcloud-issuer -&gt; tmaxcloud-clusterissuer">
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/defaults/main.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/main.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/proxy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/00.init/001.namespace.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-backend/001.clusterissuer-selfsigned.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-backend/002.certificate.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-front/002.certificate.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-front/002.default-tls.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/001.crd.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/001.serviceaccount.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.config.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.ingressclass.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.servers-transport-insecure.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/003.deploy.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/004.service.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/001.dashboard-ingressroute.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/002.console-ingressroute.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/003.kubernetes-ingressroutes.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/004.hypercloud-ingressroute.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/005.monitoring-ingressroutes.yml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/006.k8s-ingressroute.yml.j2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/01.TLS-front/001.clusterissuer-letsencrypt.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/01.TLS-front/001.clusterissuer-letsencrypt.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,24 +55,28 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20211021_0001" />
+    <property name="com.google.cloudcode.ide_session_index" value="20211022_0006" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/새 스크래치 파일" value="yaml" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_ansible/roles/api-gateway/templates" />
+    <property name="settings.editor.selected.configurable" value="orchideLicense" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates" />
+      <recent name="$PROJECT_DIR$/_kubernetes" />
       <recent name="$PROJECT_DIR$/gateway/04.INGRESS" />
       <recent name="$PROJECT_DIR$/gateway/02.TLS" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/gateway/02.GATEWAY" />
-      <recent name="$PROJECT_DIR$/_etc" />
-      <recent name="$PROJECT_DIR$/gateway/03.INGRESSROUTE" />
-      <recent name="$PROJECT_DIR$/gateway/04.INGRESS" />
+      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY" />
+      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/00.init" />
+      <recent name="$PROJECT_DIR$/_ansible/roles" />
+      <recent name="$PROJECT_DIR$/_ansible/api-gateway" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
@@ -77,6 +102,13 @@
     <MESSAGE value="[feat] kubernetes ingressroute 추가, 기타파일정리" />
     <MESSAGE value="[feat] transport 수정" />
     <MESSAGE value="[feat] transport 위치 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] transport 위치 변경" />
+    <MESSAGE value="[feat] tls 인증서 통합방안 가이드 추가" />
+    <MESSAGE value="[feat] ingress에 label 추가" />
+    <MESSAGE value="[feat] ADD makefile" />
+    <MESSAGE value="[feat] EDIT makefile" />
+    <MESSAGE value="[feat] ADD labels" />
+    <MESSAGE value="[feat] ingress ymla에 tls 첨부 (조회시 433보이게)" />
+    <MESSAGE value="[feat] CHANGE tmaxcloud-issuer -&gt; tmaxcloud-clusterissuer" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] CHANGE tmaxcloud-issuer -&gt; tmaxcloud-clusterissuer" />
   </component>
 </project>
