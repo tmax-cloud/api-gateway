@@ -1,4 +1,5 @@
 ---
+# kubectl get svc -n api-gateway-system api-gateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -9,7 +10,7 @@ metadata:
   name: tmaxcloud-gateway
   namespace: api-gateway-system
 spec:
-  secretName: tmaxcloud-gateway-tls
+  secretName: tmaxcloud-gateway-nip-io
   isCA: false
   usages:
     - digital signature
@@ -17,9 +18,9 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - "*.tmaxcloud.org"
-    - "tmaxcloud.org"
+    - "{{ LB_IP }}.nip.io"
+    - "*.{{ LB_IP }}.nip.io"
   issuerRef:
     kind: ClusterIssuer
     group: cert-manager.io
-    name: tmaxcloud-acme-clusterissuer
+    name: tmaxcloud-issuer

@@ -31,10 +31,16 @@ spec:
         # http.tls 설정을 하면 websecure를 entrypoint로 사용하면 모든 서비스에 대해 자동으로 기본 tls 적용을 함 (따로 설정을 안해줘도 됌)
         - --entrypoints.websecure.http.tls
         - --entryPoints.k8s.address=:6443
-#         insecureSkipVerify disables SSL certificate verification.
-#        - --serverstransport.insecureskipverify=true # disables SSL certificate verification. (verify ssl certificate beween traefik - backend)
+        - --entryPoints.9001.address=:9001
+        - --entrypoints.9001.http.tls
+        - --entryPoints.9002.address=:9002
+        - --entrypoints.9002.http.tls
+        - --entryPoints.9003.address=:9003
+        - --entrypoints.9003.http.tls
+          #        insecureSkipVerify disables SSL certificate verification.
+        - --serverstransport.insecureskipverify=true # disables SSL certificate verification. (verify ssl certificate beween traefik - backend)
         ## user rootCAs :rootCAs is the list of certificates (as file paths, or data bytes) that will be set as Root Certificate Authorities when using a self-signed TLS certificate.
-        - --serverstransport.rootcas=/etc/ssl/tmax/ca.cert
+#        - --serverstransport.rootcas=/etc/ssl/tmax/ca.cert
         # Uncomment the below lines to redirect http requests to https.
         - --entryPoints.web.http.redirections.entrypoint.to=websecure
         - --entryPoints.web.http.redirections.entrypoint.scheme=https
@@ -91,6 +97,15 @@ spec:
         - containerPort: 6443
           name: k8s
           protocol: TCP
+        - containerPort: 9001
+          name: kafka1
+          protocol: TCP
+        - containerPort: 9002
+          name: kafka2
+          protocol: TCP
+        - containerPort: 9003
+          name: kafka3
+          protocol: TCP
         readinessProbe:
           failureThreshold: 1
           httpGet:
@@ -132,7 +147,7 @@ spec:
           - --base-address=http://0.0.0.0:31303 
           - --keycloak-realm=tmax
           - --keycloak-auth-url=https://hyperauth.org/auth 
-          - --keycloak-client-id=ck-integration-hypercloud5
+          - --keycloak-client-id=ck-integration-hypercloud
           - --mc-mode=true
           - --release-mode=true
           # - --tls-cert-file=/var/https-cert/cert

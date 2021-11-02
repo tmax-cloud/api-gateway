@@ -18,6 +18,8 @@ LOAD=podman load
 TAG=podman tag
 PUSH=podman push
 
+TLS_FILE = "./gateway/03.TLS-front/002.certificate.yaml"
+LB_IP = $(shell kubectl get svc -n api-gateway-system api-gateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 
 prepare_online:
 	$(PULL) $(REGISTRY)/$(TRAEFIK_NAMESPACE)/$(TRAEFIK_NAME):$(TRAEFIK_TAG)
@@ -40,3 +42,14 @@ prepare_offline:
 
 install:
 	kubectl apply -f _kubernetes/
+
+install_nip_io: nip_io
+	kubectl apply -f ./nip_io
+
+clean:
+	@(rm -rf ./nip_io)
+
+nip_io:
+	@(mkdir ./nip_io)
+	@(sed "s%{{ LB_IP }}%$(LB_IP)%g" $(TLS_FILE) > ./nip_io/001.certificate.yaml)
+	@(sed "s%tmaxcloud-gateway-tls%tmaxcloud-gateway-nip-io%g" ./gateway/03.TLS-front/002.default-tls.yaml > ./nip_io/002.default-tls.yaml)
