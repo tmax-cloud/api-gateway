@@ -28,6 +28,8 @@ spec:
         - --entryPoints.traefik.address=:9000
         - --entryPoints.web.address=:80
         - --entryPoints.websecure.address=:443
+        - --entrypoints.websecure.http.middlewares=cors-header@file
+#        - --entryPoints.websecrue.http.middlewares=headers@file
         # http.tls 설정을 하면 websecure를 entrypoint로 사용하면 모든 서비스에 대해 자동으로 기본 tls 적용을 함 (따로 설정을 안해줘도 됌)
         - --entrypoints.websecure.http.tls
         - --entryPoints.k8s.address=:6443
@@ -135,7 +137,7 @@ spec:
           - --keycloak-realm=tmax
 #          - --keycloak-auth-url=https://@@hyperauth@@/auth
           - --keycloak-auth-url=https://hyperauth.org/auth
-          - --keycloak-client-id=ck-integration-hypercloud5
+          - --keycloak-client-id=hypercloud5
           - --mc-mode=true
           - --release-mode=true
 #          - --tls-cert-file=/run/secrets/tmaxcloud.org/tls.crt
