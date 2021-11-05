@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress.tmaxcloud.org/ingress: hyperregistry
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#    traefik.ingress.kubernetes.io/router.pathmatcher: "/"
+#    traefik.ingress.kubernetes.io/router.tls: "true"
+#    traefik.ingress.kubernetes.io/service.serversscheme: https
+#    traefik.ingress.kubernetes.io/service.serverstransport: insecure-transport
+  name: hr-harbor-traefik-ingress
+  namespace: hyperregistry
+spec:
+  ingressClassName: tmax-cloud  #ingressclass는 `tmax-cloud`로 지정
+  tls:
+    - hosts:
+        - hyperregistry.tmaxcloud.org
+  rules:
+  - host: hyperregistry.tmaxcloud.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: hr-harbor-portal
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: hr-harbor-core
+            port:
+              number: 80
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: hr-harbor-core
+            port:
+              number: 80
+        path: /service
+        pathType: Prefix
+      - backend:
+          service:
+            name: hr-harbor-core
+            port:
+              number: 80
+        path: /v2
+        pathType: Prefix
+      - backend:
+          service:
+            name: hr-harbor-core
+            port:
+              number: 80
+        path: /chartrepo
+        pathType: Prefix
+      - backend:
+          service:
+            name: hr-harbor-core
+            port:
+              number: 80
+        path: /c
+        pathType: Prefix

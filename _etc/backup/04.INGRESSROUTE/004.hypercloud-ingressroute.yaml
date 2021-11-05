@@ -1,0 +1,63 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: hypercloud-stripprefix
+  namespace: api-gateway-system
+spec:
+  stripPrefix:
+    prefixes:
+      - "/api/hypercloud"
+      - "/api/multi-hypercloud"
+      - "/api/webhook"
+    # forceSlash: true
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: hypercloud-transport
+  namespace: api-gateway-system
+spec:
+  rootCAsSecrets:
+    - tmaxcloud-gateway-selfsigned-test
+## https://lascrea.tistory.com/217
+## https://doc.traefik.io/traefik/routing/services/#serverstransport
+  serverName: hypercloud5-api-server-service.hypercloud5-system.svc
+#  serverName: tmax-cloud
+#
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  labels:
+    app.kubernetes.io/instance: traefik
+    app.kubernetes.io/managed-by: tmax-cloud
+    app.kubernetes.io/name: api-gateway
+  name: hypercloud-ingressroute
+  namespace: api-gateway-system
+spec:
+  entryPoints:
+  - websecure
+#  - web
+  routes:
+  - kind: Rule
+    match: PathPrefix(`/api/hypercloud`, `/api/multi-hypercloud`,`/api/webhook`) && Host(`console.tmaxcloud.org`)
+    priority: 100    
+    middlewares:
+    - name: jwt-decode-auth@file
+    - name: hypercloud-stripprefix
+      namepsace: api-gateway-system    
+    services:
+    - kind: Service
+      name: hypercloud5-api-server-service
+      namespace: hypercloud5-system
+      port: https
+      # port: 433
+      scheme: https
+#      serversTransport: tmaxcloud@file
+      serversTransport: hypercloud-transport
+#      serversTransport: insecure@file
+  tls: {} # use default tls 

@@ -51,5 +51,6 @@ clean:
 
 nip_io:
 	@(mkdir ./nip_io)
-	@(sed "s%{{ LB_IP }}%$(LB_IP)%g" $(TLS_FILE) > ./nip_io/001.certificate.yaml)
-	@(sed "s%tmaxcloud-gateway-tls%tmaxcloud-gateway-nip-io%g" ./gateway/03.TLS-front/002.default-tls.yaml > ./nip_io/002.default-tls.yaml)
+	@(cp -r ./manifests/* ./nip_io/)
+#	@(sed "s%{{ LB_IP }}%$(LB_IP)%g" $(TLS_FILE) > ./nip_io/001.certificate.yaml)
+#	@(sed "s%tmaxcloud-gateway-tls%tmaxcloud-gateway-nip-io%g" ./gateway/03.TLS-front/002.default-tls.yaml > ./nip_io/002.default-tls.yaml)

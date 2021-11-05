@@ -13,5 +13,5 @@ metadata:
   namespace: api-gateway-system
 spec:
   defaultCertificate:
-    secretName: tmaxcloud-gateway-nip-io
+    secretName: tmaxcloud-gateway-selfsigned
 

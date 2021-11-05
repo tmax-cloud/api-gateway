@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: insecure@file # ca 인증서 공유를 안했을 때
+    # ca 인증서 공유를 했을 때
+    traefik.ingress.kubernetes.io/service.serverstransport: tmaxcloud@file
+  name: hypercloud5-api-server-ingress-service-for-gateway
+  namespace: hypercloud5-system
+spec:
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: https
+    name: https # name 필수
+  selector:
+    hypercloud5: api-server
+  type: ClusterIP

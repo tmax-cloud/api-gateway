@@ -11,6 +11,10 @@ metadata:
   namespace: api-gateway-system
 spec:
   secretName: tmaxcloud-gateway
+  commonName: api-gateway
+  subject:
+    organizations:
+      - "tmax-cloud"
   isCA: false
   usages:
     - digital signature

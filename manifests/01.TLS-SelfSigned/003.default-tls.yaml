@@ -7,11 +7,11 @@ kind: TLSStore
 metadata:
   labels:
     app.kubernetes.io/instance: traefik
-    app.kubernetes.io/managed-bu: tmax-cloud
+    app.kubernetes.io/managed-by: tmax-cloud
     app.kubernetes.io/name: api-gateway
   name: default
   namespace: api-gateway-system
 spec:
   defaultCertificate:
-    secretName: tmaxcloud-gateway
+    secretName: tmaxcloud-gateway-selfsigned-front
 

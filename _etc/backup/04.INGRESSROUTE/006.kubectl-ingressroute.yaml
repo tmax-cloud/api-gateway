@@ -1,3 +1,4 @@
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -13,12 +14,13 @@ spec:
   - k8s
   routes:
   - kind: Rule
-    match: PathPrefix(`/`) && Host(`192.168.9.155.nip.io`)
+    match: PathPrefix(`/`) && Host(`kubernetes.tmaxcloud.org`)
     services:
     - name: kubernetes
       namespace: default
       port: https
       scheme: https
-      serversTransport: insecure@file
+#      serversTransport: kubernetes@file
+#      serversTransport: insecure@file
   tls: {}
 ---

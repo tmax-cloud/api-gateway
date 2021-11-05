@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress.tmaxcloud.org/ingress: kibana
+  annotations: 
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  name: kibana
+  namespace: kube-logging
+spec:
+  ingressClassName: tmax-cloud
+  rules:
+    - host: kibana.tmaxcloud.org
+      http:
+        paths:
+          - backend:
+              service:
+                name: kibana
+                port:
+                  number: 5601
+                  # name: https
+            path: /api/kibana
+            pathType: Prefix
+  tls:
+    - hosts:
+        - kibana.tmaxcloud.org
+#      secretName: api-gateway-server-tls
