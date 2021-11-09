@@ -1,0 +1,7 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "external-mysql-service"
+  spec:
+    type: ExternalName
+    externalName: shkim-aws-apiserver-205005065.eu-central-1.elb.amazonaws.com
