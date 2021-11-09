@@ -4,10 +4,34 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] makefile + tls 관련 작업 업데이트">
+    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] cors error 해결">
+      <change afterPath="$PROJECT_DIR$/_etc/05.INGRESS-example/hyperauth-ingress.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_etc/05.INGRESS-example/hyperauth-svc.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_etc/backup/03.GATEWAY/003.config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/backup/03.GATEWAY/003.config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_etc/backup/03.GATEWAY/004.deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/backup/03.GATEWAY/004.deploy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/defaults/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/proxy.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/00.init/001.namespace.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-backend/001.clusterissuer-selfsigned.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-backend/002.certificate.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-front/002.certificate.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/01.TLS-front/002.default-tls.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/001.crd.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/001.serviceaccount.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.config.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.ingressclass.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/002.servers-transport-insecure.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/003.deploy.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY/004.service.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/001.dashboard-ingressroute.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/002.console-ingressroute.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/003.kubernetes-ingressroutes.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/004.hypercloud-ingressroute.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/005.monitoring-ingressroutes.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03.INGRESSROUTE/006.k8s-ingressroute.yml.j2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/05.INGRESS-example/backend-http-grafana-ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/05.INGRESS-example/backend-http-grafana-ingress.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifests/03.GATEWAY/003.config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/03.GATEWAY/003.config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifests/03.GATEWAY/004.deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/03.GATEWAY/004.deploy.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,29 +60,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20211105_0002" />
+    <property name="com.google.cloudcode.ide_session_index" value="20211109_0006" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/새 스크래치 파일" value="yaml" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/manifests/01.TLS-SelfSigned" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="orchideLicense" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates" />
+      <recent name="$PROJECT_DIR$/_etc/05.INGRESS-example" />
       <recent name="$PROJECT_DIR$/manifests/01.TLS-SelfSigned" />
       <recent name="$PROJECT_DIR$/_etc" />
       <recent name="$PROJECT_DIR$/manifests/01.TLS" />
-      <recent name="$PROJECT_DIR$/manifests/03.TLS-front" />
-      <recent name="$PROJECT_DIR$/manifest" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates" />
       <recent name="$PROJECT_DIR$/_etc" />
       <recent name="$PROJECT_DIR$/tcp" />
       <recent name="$PROJECT_DIR$/gateway/00.INIT" />
       <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/02.GATEWAY" />
-      <recent name="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/00.init" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
@@ -94,6 +118,7 @@
     <MESSAGE value="[feat] ADD ansible job" />
     <MESSAGE value="[feat] ingressrouteTCP 추가" />
     <MESSAGE value="[feat] makefile + tls 관련 작업 업데이트" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] makefile + tls 관련 작업 업데이트" />
+    <MESSAGE value="[feat] cors error 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] cors error 해결" />
   </component>
 </project>

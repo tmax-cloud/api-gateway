@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress.tmaxcloud.org/name: hyperauth
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  name: hyperauth-ingress
+  namespace: api-gateway-system
+spec:
+  ingressClassName: tmax-cloud  #ingressclass는 `tmax-cloud`로 지정
+  rules:
+    - host: hyperauth.tmaxcloud.org
+      http:
+        paths:
+          - backend:
+              service:
+                name: hyperauth
+                port:
+                  name: https
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - hyperauth.tmaxcloud.org

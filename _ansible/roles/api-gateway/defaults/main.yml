@@ -5,6 +5,7 @@ console_provisioner_enabled: true
 ## Console Version
 # console_ver: "5.0.22.0"
 # operator_ver: "5.1.0.1"
+custom_domain_name: tmaxcloud.org
 
 ## HyperAuth
 # hyperauth(keycloak)에서 설정한 REALM정보 입력
@@ -17,7 +18,6 @@ keycloak: "hyperauth.{{ custom_domain_name }}"
 # 예시) CLIENTID="hypercloud5"
 clientid: "hypercloud5"
 
-custom_domain_name: tmaxcloud.org
 
 
 TRAEFIK_NAMESPACE: library
@@ -29,7 +29,7 @@ CONSOLE_TAG: 5.0.34.0
 JWT_NAMESPACE: tmaxcloudck
 JWT_NAME: jwt-decode
 JWT_TAG: 5.0.0.0
-docker_image_repo: docker.io
+#docker_image_repo: docker.io
 
 gateway_traefik_image_repo: "{{ docker_image_repo }}/{{TRAEFIK_NAMESPACE}}/{{TRAEFIK_NAME}}"
 gateway_traefik_image_tag: "{{TRAEFIK_TAG}}"
