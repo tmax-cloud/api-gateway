@@ -65,7 +65,7 @@
 - name: gateway | Apply Manifests 00.INIT
   kube:
     kubectl: "{{ bin_dir }}/kubectl"
-    filename: "{{ kube_config_dir }}/addons/gateway/00.INIT/{{ item.item.file }}"
+    filename: "{{ kube_config_dir }}/addons/gateway/{{ item.item.file }}"
     state: "latest"
     wait: true
   with_items:
