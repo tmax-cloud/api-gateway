@@ -23,3 +23,14 @@ spec:
   tls:
     - hosts:
         - hyperauth.tmaxcloud.org
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /foobar
+      - /fiibar

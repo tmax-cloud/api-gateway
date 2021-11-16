@@ -30,8 +30,8 @@ spec:
         env:
             - name: LOG_LEVEL
               value: debug
-            # - name: LOGOUT_REDIRECT
-            #   value: /_oauth/logout
+#            - name: LOGOUT_REDIRECT
+#              value: /_oauth/logout
             # - name: DOMAIN
             #   value: dashboard.hypercloud.com
             # - name: INSECURE_COOKIE
@@ -43,10 +43,13 @@ spec:
             - name: PROVIDERS_OIDC_ISSUER_URL
               value: https://hyperauth.org/auth/realms/tmax
             - name: PROVIDERS_OIDC_CLIENT_ID
-              # value: traefik 
-              value: grafana
-            # - name: DEFAULT_ACTION
-            #   value: auth               
+              value: jaeger
+            - name: LOGOUT_REDIRECT
+              value: https://hyperauth.org/auth/realms/tmax/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fjaeger-query.tmaxcloud.org
+            - name: DEFAULT_ACTION
+              value: auth
+#            - name: URL_PATH
+#              value: /auth
             - name: PROVIDERS_OIDC_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:

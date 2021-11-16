@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat] EDIT typo error">
+    <list default="true" id="fab0b6b6-409e-4c3d-b91f-3b7b6b6b1c9c" name="변경" comment="[feat][bugfix] namespace 오탈자 수정, ansible-playbook 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/003_kubernetes-ingressroutes.yaml.j2" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/003_kubernetes-ingressroutes.yaml.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/004_hypercloud-ingressroute.yaml.j2" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/004_hypercloud-ingressroute.yaml.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/005_monitoring-ingressroutes.yaml.j2" beforeDir="false" afterPath="$PROJECT_DIR$/_ansible/roles/api-gateway/templates/03_INGRESSROUTE/005_monitoring-ingressroutes.yaml.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_etc/backup/04.INGRESSROUTE/004.hypercloud-ingressroute.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/backup/04.INGRESSROUTE/004.hypercloud-ingressroute.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/003.kubernetes-ingressroutes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/003.kubernetes-ingressroutes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/004.hypercloud-ingressroute.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/004.hypercloud-ingressroute.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/005.monitoring-ingressroutes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/04.INGRESSROUTE/005.monitoring-ingressroutes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/05.INGRESS-example/backend-https-hypercloud-ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/05.INGRESS-example/backend-https-hypercloud-ingress.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/05.INGRESS-example/hyperauth-ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/05.INGRESS-example/hyperauth-ingress.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/traefik-forward-auth/001-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/traefik-forward-auth/001-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/traefik-forward-auth/001-secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/traefik-forward-auth/001-secrets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_etc/traefik-forward-auth/004-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/_etc/traefik-forward-auth/004-deployment.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.google.cloudcode.ide_session_index" value="20211110_0002" />
+    <property name="com.google.cloudcode.ide_session_index" value="20211111_0005" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/새 스크래치 파일" value="yaml" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -112,6 +109,7 @@
     <MESSAGE value="[feat] ADD ansible-playbook" />
     <MESSAGE value="[feat] ADD ansible-playbook-2" />
     <MESSAGE value="[feat] EDIT typo error" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] EDIT typo error" />
+    <MESSAGE value="[feat][bugfix] namespace 오탈자 수정, ansible-playbook 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat][bugfix] namespace 오탈자 수정, ansible-playbook 수정" />
   </component>
 </project>

@@ -6,13 +6,13 @@ metadata:
   namespace: api-gateway-system
 data:
   INSECURE_COOKIE: 'true'
-  COOKIE_DOMAIN: "dashboard.hypercloud.com"
-  DOMAINS: "hypercloud.com"
-  AUTH_HOST: "dashboard.hypercloud.com"
+  COOKIE_DOMAIN: "jaeger-query.tmaxcloud.org"
+  DOMAINS: "tmaxcloud.org"
+  AUTH_HOST: "jaeger-query.tmaxcloud.org"
   URL_PATH: "/_oauth"
   DEFAULT_PROVIDER: oidc
   PROVIDERS_OIDC_ISSUER_URL: https://hyperauth.org/auth/realms/tmax
-  PROVIDERS_OIDC_CLIENT_ID: traefik
+  PROVIDERS_OIDC_CLIENT_ID: jaeger
 
 
   

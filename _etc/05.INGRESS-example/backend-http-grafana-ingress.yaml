@@ -4,11 +4,11 @@ kind: Ingress
 metadata:
   labels:
     ingress.tmaxcloud.org/name: grafana
-  annotations: 
+  annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#    traefik.ingress.kubernetes.io/router.tls: "true"
-#    traefik.ingress.kubernetes.io/router.middlewares: jwt-decode-auth@file
-#    cert-manager.io/cluster-issuer: tmaxcloud-acme-clusterissuer
+  #    traefik.ingress.kubernetes.io/router.tls: "true"
+  #    traefik.ingress.kubernetes.io/router.middlewares: jwt-decode-auth@file
+  #    cert-manager.io/cluster-issuer: tmaxcloud-acme-clusterissuer
   name: grafana
   namespace: monitoring
 spec:
@@ -32,3 +32,6 @@ spec:
 #    - hosts:
 #        - monitoring.tmaxcloud.org
 #      secretName: tmaxcloud-org
+
+---
+

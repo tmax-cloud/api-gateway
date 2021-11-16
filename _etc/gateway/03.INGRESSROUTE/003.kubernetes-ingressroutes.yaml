@@ -1,16 +1,3 @@
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: kubernetes-stripprefix
-  namespace: api-gateway-system
-spec:
-  stripPrefix:
-    prefixes:
-      - "/api/kubernetes"
-    forceSlash: true
-
----
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -39,11 +26,22 @@ spec:
           namespace: default
           port: https
           scheme: https
-          serversTransport: kubernetes@file
+          serversTransport: insecure-transport
   tls: {} # use default tls
 #  tls:
 #    secretName: api-gateway-server-tls
-
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: kubernetes-stripprefix
+  namespace: api-gateway-system
+spec:
+  stripPrefix:
+    prefixes:
+      - "/api/kubernetes"
+    forceSlash: true
+# ---
 # apiVersion: traefik.containo.us/v1alpha1
 # kind: ServersTransport
 # metadata:

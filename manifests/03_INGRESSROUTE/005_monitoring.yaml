@@ -36,7 +36,7 @@ spec:
   #  - web
   routes:
     - kind: Rule
-      match: PathPrefix(`/api/prometheus-tenancy/api`) && Host(`console.tmaxcloud.org`)
+      match: PathPrefix(`/api/prometheus-tenancy/api`) && Host(`console.@@DNS@@`)
       priority: 100
       middlewares:
         - name: monitoring-stripprefix-tenancy
@@ -49,7 +49,7 @@ spec:
           port: web
           scheme: http
     - kind: Rule
-      match: PathPrefix(`/api/prometheus/api`) && Host(`console.tmaxcloud.org`)
+      match: PathPrefix(`/api/prometheus/api`) && Host(`console.@@DNS@@`)
       priority: 100
       middlewares:
         - name: monitoring-stripprefix
@@ -62,7 +62,7 @@ spec:
           port: web
           scheme: http
     - kind: Rule
-      match: PathPrefix(`/api/alertmanager/api`) && Host(`console.tmaxcloud.org`)
+      match: PathPrefix(`/api/alertmanager/api`) && Host(`console.@@DNS@@`)
       priority: 100
       middlewares:
         - name: monitoring-stripprefix
@@ -75,5 +75,3 @@ spec:
           port: web
           scheme: http
   tls: {}
----
-

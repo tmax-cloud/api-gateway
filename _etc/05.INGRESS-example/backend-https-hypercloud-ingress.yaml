@@ -6,6 +6,7 @@ metadata:
     ingress.tmaxcloud.org/ingress: hypercloud
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: jwt-decode-auth@file
   name: hypercloud-ingress
   namespace: hypercloud5-system
 spec:

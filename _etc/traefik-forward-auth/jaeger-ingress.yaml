@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: api-gateway-system-traefik-forward-auth@kubernetescrd
+  labels:
+    app: jaeger
+    app.kubernetes.io/component: query
+    app.kubernetes.io/name: jaeger
+    ingress.tmaxcloud.org/name: jaeger-query
+  name: jaeger-ingress
+  namespace: istio-system
+spec:
+  ingressClassName: tmax-cloud
+  rules:
+  - host: jaeger-query.tmaxcloud.org
+    http:
+      paths:
+      - backend:
+          serviceName: jaeger-query
+          servicePort: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - jaeger-query.tmaxcloud.org

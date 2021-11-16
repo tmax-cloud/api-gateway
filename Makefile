@@ -18,8 +18,8 @@ LOAD=podman load
 TAG=podman tag
 PUSH=podman push
 
-TLS_FILE = "./gateway/03.TLS-front/002.certificate.yaml"
-LB_IP = $(shell kubectl get svc -n api-gateway-system api-gateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+
+HYPERAUTH = "hyperauth.org"
 
 prepare_online:
 	$(PULL) $(REGISTRY)/$(TRAEFIK_NAMESPACE)/$(TRAEFIK_NAME):$(TRAEFIK_TAG)
@@ -40,17 +40,23 @@ prepare_offline:
 	$(PUSH) $(PRIVATE_REGISTRY)/$(CONSOLE_NAMESPACE)/$(CONSOLE_NAME):$(CONSOLE_TAG)
 	$(PUSH) $(PRIVATE_REGISTRY)/$(JWT_NAMESPACE)/$(JWT_NAME):$(JWT_TAG)
 
-install:
-	kubectl apply -f _kubernetes/
-
-install_nip_io: nip_io
-	kubectl apply -f ./nip_io
-
 clean:
 	@(rm -rf ./nip_io)
 
-nip_io:
+nip_io: LB_IP := $(shell kubectl apply -f ./manifests/00_INIT | kubectl apply -f ./manifests/02_GATEWAY/005_service.yaml | sleep 5 | kubectl get svc -n api-gateway-system api-gateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+nip_io: clean
 	@(mkdir ./nip_io)
-	@(cp -r ./manifests/* ./nip_io/)
-#	@(sed "s%{{ LB_IP }}%$(LB_IP)%g" $(TLS_FILE) > ./nip_io/001.certificate.yaml)
-#	@(sed "s%tmaxcloud-gateway-tls%tmaxcloud-gateway-nip-io%g" ./gateway/03.TLS-front/002.default-tls.yaml > ./nip_io/002.default-tls.yaml)
+	@(cp -r ./manifests/01_TLS_SelfSigned ./manifests/02_GATEWAY ./nip_io/)
+	@(sed "s%@@DNS@@%${LB_IP}.nip.io%g" ./manifests/01_TLS_SelfSigned/002_certificate_selfsigned_front.yaml > ./nip_io/01_TLS_SelfSigned/002_certificate_selfsigned_front.yaml)
+	@(sed "s%@@DNS@@%$(LB_IP).nip.io%g" ./manifests/03_INGRESSROUTE/* > ./nip_io/total_ingressroute.yaml)
+	@(sed "s%@@HYPERAUTH@@%$(HYPERAUTH)%g" ./manifests/02_GATEWAY/004_deploy.yaml > ./nip_io/02_GATEWAY/004_deploy.yaml	)
+	kubectl apply -f ./nip_io/01_TLS_SelfSigned
+	kubectl apply -f ./nip_io/02_GATEWAY
+	kubectl apply -f ./nip_io/total_ingressroute.yaml
+	
+ansible: 
+	kubectl apply -f _ansible/
+
+test: clean
+	@(mkdir ./nip_io)
+	@(sed "s%@@DNS@@%$(LB_IP).nip.io%g" ./manifests/03_INGRESSROUTE/* > ./nip_io/03_INGRESSROUTE.yaml)
