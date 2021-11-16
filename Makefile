@@ -18,7 +18,6 @@ LOAD=podman load
 TAG=podman tag
 PUSH=podman push
 
-
 HYPERAUTH = "hyperauth.org"
 
 prepare_online:
